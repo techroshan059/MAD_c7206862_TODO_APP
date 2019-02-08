@@ -1,5 +1,5 @@
 # TodoApp
-Note taking app for Android built with architecture components and MVVM architecture
+Note taking app for Android built with architecture components and MVVM architecture. Built the app as the project at a job interview with Agromall
 ## Features
 * Local persistence using room DB
 * MVVM architecture 
