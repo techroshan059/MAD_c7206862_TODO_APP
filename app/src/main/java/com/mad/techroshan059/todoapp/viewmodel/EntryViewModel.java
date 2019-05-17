@@ -1,10 +1,10 @@
-package com.example.eziketobenna.todoapp.viewmodel;
+package com.mad.techroshan059.todoapp.viewmodel;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.example.eziketobenna.todoapp.database.AppDatabase;
-import com.example.eziketobenna.todoapp.model.Entries;
+import com.mad.techroshan059.todoapp.database.AppDatabase;
+import com.mad.techroshan059.todoapp.model.Entries;
 
 public class EntryViewModel extends ViewModel{
 

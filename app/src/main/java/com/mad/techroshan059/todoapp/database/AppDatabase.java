@@ -1,6 +1,5 @@
-package com.example.eziketobenna.todoapp.database;
+package com.mad.techroshan059.todoapp.database;
 
-import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
@@ -8,7 +7,7 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.eziketobenna.todoapp.model.Entries;
+import com.mad.techroshan059.todoapp.model.Entries;
 
 @Database(entities = {Entries.class}, version = 1, exportSchema = false)
 @TypeConverters(DateConverter.class)

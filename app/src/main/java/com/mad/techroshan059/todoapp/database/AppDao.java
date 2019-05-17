@@ -1,4 +1,4 @@
-package com.example.eziketobenna.todoapp.database;
+package com.mad.techroshan059.todoapp.database;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
@@ -8,7 +8,7 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.example.eziketobenna.todoapp.model.Entries;
+import com.mad.techroshan059.todoapp.model.Entries;
 
 import java.util.List;
 

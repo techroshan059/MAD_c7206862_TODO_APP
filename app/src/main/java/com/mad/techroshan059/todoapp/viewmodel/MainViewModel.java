@@ -1,12 +1,12 @@
-package com.example.eziketobenna.todoapp.viewmodel;
+package com.mad.techroshan059.todoapp.viewmodel;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.util.Log;
 
-import com.example.eziketobenna.todoapp.database.AppDatabase;
-import com.example.eziketobenna.todoapp.model.Entries;
+import com.mad.techroshan059.todoapp.database.AppDatabase;
+import com.mad.techroshan059.todoapp.model.Entries;
 
 import java.util.List;
 

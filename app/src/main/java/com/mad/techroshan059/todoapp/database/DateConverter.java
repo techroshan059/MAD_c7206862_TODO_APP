@@ -1,4 +1,4 @@
-package com.example.eziketobenna.todoapp.database;
+package com.mad.techroshan059.todoapp.database;
 
 import android.arch.persistence.room.TypeConverter;
 

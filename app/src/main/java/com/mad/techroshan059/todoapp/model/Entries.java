@@ -1,4 +1,4 @@
-package com.example.eziketobenna.todoapp.model;
+package com.mad.techroshan059.todoapp.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
@@ -15,6 +15,7 @@ public class Entries {
     private String content;
     private String dueDate;
     private String dueTime;
+
     private Date updatedAt;
 
     @Ignore

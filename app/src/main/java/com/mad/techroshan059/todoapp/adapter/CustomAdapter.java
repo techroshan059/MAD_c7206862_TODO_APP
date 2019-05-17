@@ -1,4 +1,4 @@
-package com.example.eziketobenna.todoapp.adapter;
+package com.mad.techroshan059.todoapp.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,10 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.eziketobenna.todoapp.R;
-import com.example.eziketobenna.todoapp.model.Entries;
+import com.mad.techroshan059.todoapp.R;
+import com.mad.techroshan059.todoapp.model.Entries;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -49,8 +48,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         String title = entry.getTitle();
         String content = entry.getContent();
         String updatedAt = dateFormat.format(entry.getUpdatedAt());
+
         Date date = new Date();
+
         String[] timeA = entry.getDueTime().toString().split(" ");
+
+
+
+
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("EEE, MMM d, yyyy");
             Date selectedDateParse = formatter.parse(entry.getDueDate());

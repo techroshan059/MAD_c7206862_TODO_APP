@@ -1,9 +1,9 @@
-package com.example.eziketobenna.todoapp.viewmodel;
+package com.mad.techroshan059.todoapp.viewmodel;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
-import com.example.eziketobenna.todoapp.database.AppDatabase;
+import com.mad.techroshan059.todoapp.database.AppDatabase;
 
 public class EntryViewModelFactory extends ViewModelProvider.NewInstanceFactory{
     private final AppDatabase mDb;

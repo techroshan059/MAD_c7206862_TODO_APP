@@ -1,16 +1,14 @@
-package com.example.eziketobenna.todoapp.view;
+package com.mad.techroshan059.todoapp.view;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.media.Image;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,14 +20,13 @@ import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.eziketobenna.todoapp.R;
-import com.example.eziketobenna.todoapp.database.AppDatabase;
-import com.example.eziketobenna.todoapp.model.Entries;
-import com.example.eziketobenna.todoapp.utils.AppExecutors;
-import com.example.eziketobenna.todoapp.viewmodel.EntryViewModel;
-import com.example.eziketobenna.todoapp.viewmodel.EntryViewModelFactory;
+import com.mad.techroshan059.todoapp.R;
+import com.mad.techroshan059.todoapp.database.AppDatabase;
+import com.mad.techroshan059.todoapp.model.Entries;
+import com.mad.techroshan059.todoapp.utils.AppExecutors;
+import com.mad.techroshan059.todoapp.viewmodel.EntryViewModel;
+import com.mad.techroshan059.todoapp.viewmodel.EntryViewModelFactory;
 
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

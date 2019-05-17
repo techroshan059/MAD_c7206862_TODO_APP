@@ -1,4 +1,4 @@
-package com.example.eziketobenna.todoapp;
+package com.mad.techroshan059.todoapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

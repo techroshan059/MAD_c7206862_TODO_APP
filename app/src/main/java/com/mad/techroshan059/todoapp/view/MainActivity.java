@@ -1,4 +1,4 @@
-package com.example.eziketobenna.todoapp.view;
+package com.mad.techroshan059.todoapp.view;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -14,12 +14,12 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 
-import com.example.eziketobenna.todoapp.R;
-import com.example.eziketobenna.todoapp.adapter.CustomAdapter;
-import com.example.eziketobenna.todoapp.database.AppDatabase;
-import com.example.eziketobenna.todoapp.model.Entries;
-import com.example.eziketobenna.todoapp.utils.AppExecutors;
-import com.example.eziketobenna.todoapp.viewmodel.MainViewModel;
+import com.mad.techroshan059.todoapp.R;
+import com.mad.techroshan059.todoapp.adapter.CustomAdapter;
+import com.mad.techroshan059.todoapp.database.AppDatabase;
+import com.mad.techroshan059.todoapp.model.Entries;
+import com.mad.techroshan059.todoapp.utils.AppExecutors;
+import com.mad.techroshan059.todoapp.viewmodel.MainViewModel;
 
 import java.util.List;
 
