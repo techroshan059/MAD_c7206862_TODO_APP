@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.eziketobenna.todoapp.R;
 import com.example.eziketobenna.todoapp.model.Entries;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -46,10 +49,51 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         String title = entry.getTitle();
         String content = entry.getContent();
         String updatedAt = dateFormat.format(entry.getUpdatedAt());
+        Date date = new Date();
+        String[] timeA = entry.getDueTime().toString().split(" ");
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE, MMM d, yyyy");
+            Date selectedDateParse = formatter.parse(entry.getDueDate());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String CurrentDataString = sdf.format(date);
+
+
+            String selecteddateString = formatter.format(selectedDateParse);
+            Date date2 = sdf.parse(CurrentDataString);
+
+            String[] splitSelectedDate = selecteddateString.split(",");
+            String[] splitSelectedMonthday = splitSelectedDate[1].split(" ");
+
+            if(selectedDateParse.compareTo(date2)==0){
+                customView.datetime3.setText("Today");
+                customView.datetime1.setText(timeA[0]);
+                customView.datetime2.setText(timeA[1]);
+            }
+
+            else{
+                customView.date.setText(selecteddateString);
+
+                customView.datetime1.setText(splitSelectedMonthday[2]);
+                customView.datetime2.setText(splitSelectedMonthday[1]);
+                customView.datetime3.setText(splitSelectedDate[2]);
+            }
+
+            customView.content.setText(content);
+            customView.date.setText("Added Date: "+ updatedAt);
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
 
         customView.title.setText(title);
-        customView.content.setText(content);
-        customView.date.setText(updatedAt);
+
+
 
     }
 
@@ -83,6 +127,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         TextView content;
         @BindView(R.id.date_view)
         TextView date;
+        @BindView(R.id.datetime1)
+        TextView datetime1;
+        @BindView(R.id.datetime2)
+        TextView datetime2;
+        @BindView(R.id.datetime3)
+        TextView datetime3;
 
         CustomView(@NonNull View itemView) {
             super(itemView);

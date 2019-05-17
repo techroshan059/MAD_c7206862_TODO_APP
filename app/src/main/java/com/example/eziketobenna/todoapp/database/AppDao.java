@@ -15,7 +15,7 @@ import java.util.List;
 @Dao
 public interface AppDao {
 
-    @Query("SELECT * FROM entry ORDER BY title")
+    @Query("SELECT * FROM entry ORDER BY updatedAt")
     LiveData<List<Entries>> loadAllEntries();
 
     @Insert

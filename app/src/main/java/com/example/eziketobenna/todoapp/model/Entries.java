@@ -13,19 +13,26 @@ public class Entries {
     private int id;
     private String title;
     private String content;
+    private String dueDate;
+    private String dueTime;
     private Date updatedAt;
 
     @Ignore
-    public Entries(String title, String content, Date updatedAt) {
+    public Entries(String title, String content, String dueDate, String dueTime, Date updatedAt) {
         this.title = title;
         this.content = content;
         this.updatedAt = updatedAt;
+        this.dueDate = dueDate;
+        this.dueTime = dueTime;
+
     }
 
-    public Entries(int id, String title, String content, Date updatedAt) {
+    public Entries(int id, String title, String content, String dueDate, String dueTime, Date updatedAt) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.dueDate = dueDate;
+        this.dueTime = dueTime;
         this.updatedAt = updatedAt;
     }
 
@@ -52,6 +59,22 @@ public class Entries {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public String getDueTime() {
+        return dueTime;
+    }
+
+    public void setDueTime(String dueTime) {
+        this.dueTime = dueTime;
     }
 
     public Date getUpdatedAt() {

@@ -1,39 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
     android:orientation="vertical">
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16dp"
+        android:text="What is to be done?"
+        android:textFontWeight="bold"/>
 
     <EditText
         android:id="@+id/editText_title"
         android:inputType="textCapSentences"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="12dp"
         android:hint="@string/title"
-        android:textSize="22sp"
+        android:textSize="16sp"
         android:maxLines="1" />
+
+
+
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16dp"
+        android:text="Due Date"
+        android:textFontWeight="bold"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/editText_dueDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Due Date"
+            android:enabled="false"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+
+            android:maxLines="1" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/popUpCalendar"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/calendar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.971"
+            app:layout_constraintStart_toEndOf="@+id/editText_dueDate"
+            tools:layout_editor_absoluteY="16dp" />
+
+
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/editText_dueTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Due Time"
+            tools:layout_editor_absoluteX="0dp"
+            android:enabled="false"
+            tools:layout_editor_absoluteY="0dp"  android:maxLines="1" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+android:id="@+id/popUpClock"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/clock"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.972"
+            app:layout_constraintStart_toEndOf="@+id/editText_dueTime"
+            tools:layout_editor_absoluteY="12dp" />
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16dp"
+        android:text="Description"
+        android:textFontWeight="bold"/>
 
     <EditText
         android:id="@+id/editText_content"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+
+
         android:layout_weight="1"
-        android:gravity="start|top"
-        android:inputType="text|textMultiLine|textAutoCorrect"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginStart="8dp"
         android:cursorVisible="true"
-        android:textSize="18sp"
         android:ellipsize="start"
-        android:hint="content"
-        android:padding="4dp" />
+        android:gravity="start|top"
+        android:hint="Description"
+
+
+        android:textSize="16sp" />
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimary"
+        android:text="Mark as a priority todo task "/>
+
 
 
 </LinearLayout>

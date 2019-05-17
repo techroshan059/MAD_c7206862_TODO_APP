@@ -1,8 +1,11 @@
 package com.example.eziketobenna.todoapp.view;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.media.Image;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +15,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.eziketobenna.todoapp.R;
@@ -22,6 +29,11 @@ import com.example.eziketobenna.todoapp.utils.AppExecutors;
 import com.example.eziketobenna.todoapp.viewmodel.EntryViewModel;
 import com.example.eziketobenna.todoapp.viewmodel.EntryViewModelFactory;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -38,6 +50,17 @@ public class EntryActivity extends AppCompatActivity {
     EditText title;
     @BindView(R.id.editText_content)
     EditText content;
+
+    @BindView(R.id.editText_dueDate)
+    EditText dueDate;
+
+    @BindView(R.id.editText_dueTime)
+    EditText dueTime;
+
+    DatePickerDialog picker;
+    ImageView popUpCalendar,popUpClock;
+
+
     private AppDatabase mDb;
 
     @Override
@@ -45,6 +68,20 @@ public class EntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry);
         ButterKnife.bind(this);
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat currentDate = new SimpleDateFormat("EEE, MMM d, yyyy");
+        DateFormat currentTime = new SimpleDateFormat("h:mm a");
+        String todayDate = currentDate.format(date);
+        String todayTime = currentTime.format(date);
+
+
+        popUpCalendar = findViewById(R.id.popUpCalendar); popUpClock = findViewById(R.id.popUpClock);
+
+       this.dueDate.setText(todayDate);
+        this.dueTime.setText(todayTime);
+
+
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -71,6 +108,68 @@ public class EntryActivity extends AppCompatActivity {
                 });
             }
         }
+
+        popUpCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(EntryActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                              Calendar calendar = Calendar.getInstance();
+                              calendar.set(year,monthOfYear,dayOfMonth);
+
+                              SimpleDateFormat frm = new SimpleDateFormat("EEE, MMM d, yyyy");
+                              String selectedDate = frm.format(calendar.getTime());
+                              dueDate.setText(selectedDate);
+                            }
+                        }, year, month, day);
+                picker.show();
+            }
+        });
+
+        popUpClock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TimePickerDialog mTimePicker;
+
+                final Calendar c = Calendar.getInstance();
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
+
+                mTimePicker = new TimePickerDialog(EntryActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+
+                        String time = selectedHour + ":" + selectedMinute;
+
+                        SimpleDateFormat fmt = new SimpleDateFormat("HH:mm");
+                        Date date = null;
+                        try {
+                            date = fmt.parse(time );
+                        } catch (ParseException e) {
+
+                            e.printStackTrace();
+                        }
+
+                        SimpleDateFormat fmtOut = new SimpleDateFormat("hh:mm aa");
+
+                        String formattedTime=fmtOut.format(date);
+
+                        dueTime.setText(formattedTime);
+                    }
+                }, hour, minute, false);//No 24 hour time
+                mTimePicker.show();
+            }
+        });
     }
 
     private void populateUI(Entries entry) {
@@ -104,9 +203,9 @@ public class EntryActivity extends AppCompatActivity {
             case R.id.cancel_action:
                 onNavigateUpFromChild(EntryActivity.this);
                 return true;
-            case R.id.homeAsUp:
-                onSaveButtonClicked();
-                return true;
+
+
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -115,8 +214,10 @@ public class EntryActivity extends AppCompatActivity {
     private void onSaveButtonClicked() {
         String entryTitle = title.getText().toString();
         String entryContent = content.getText().toString();
+        String entryDueDate = dueDate.getText().toString();
+        String entryDueTime = dueTime.getText().toString();
         Date date = new Date();
-        final Entries entry = new Entries(entryTitle, entryContent, date);
+        final Entries entry = new Entries(entryTitle, entryContent, entryDueDate, entryDueTime, date);
         if (!(entryTitle.isEmpty()) && !(entryContent.isEmpty())) {
             AppExecutors.getInstance().diskIO().execute(new Runnable() {
                 @Override
@@ -134,5 +235,9 @@ public class EntryActivity extends AppCompatActivity {
         } else {
             finish();
         }
+    }
+
+    public  void openCalModal(){
+        Toast.makeText(this, "open", Toast.LENGTH_SHORT).show();
     }
 }
