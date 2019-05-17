@@ -6,7 +6,6 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -224,8 +223,9 @@ public class EntryActivity extends AppCompatActivity {
         String entryContent = content.getText().toString();
         String entryDueDate = dueDate.getText().toString();
         String entryDueTime = dueTime.getText().toString();
+
         Date date = new Date();
-        final Entries entry = new Entries(entryTitle, entryContent, entryDueDate, entryDueTime, priorityCheckBox.isChecked()?1:0,  date);
+        final Entries entry = new Entries(entryTitle, entryContent, entryDueDate, entryDueTime, priorityCheckBox.isChecked()?1:0,0,  date);
         if (!(entryTitle.isEmpty()) && !(entryContent.isEmpty())) {
             AppExecutors.getInstance().diskIO().execute(new Runnable() {
                 @Override

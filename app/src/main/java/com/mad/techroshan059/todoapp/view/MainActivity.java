@@ -77,6 +77,33 @@ public class MainActivity extends AppCompatActivity  implements CustomAdapter.It
                 });
             }
         }).attachToRecyclerView(recyclerView);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+            // Called when a user swipes left or right on a ViewHolder
+            @Override
+            public void onSwiped(final RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        int position = viewHolder.getAdapterPosition();
+                        List<Entries> entries = customAdapter.getEntries();
+                        int i = entries.get(position).getStatus();
+                        if(i==0){
+                            mDb.appDao().updateComplete(1,entries.get(position).getId());
+                            showUndoSnackbar("Your todo task has been marked as completed task!");
+                        }else{
+                            mDb.appDao().updateComplete(0,entries.get(position).getId());
+                            showUndoSnackbar("Your todo task has been marked as not completed task!");
+                        }
+
+                    }
+                });
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 
     private void setUpViewModel() {
@@ -97,6 +124,8 @@ public class MainActivity extends AppCompatActivity  implements CustomAdapter.It
         intent.putExtra(EntryActivity.EXTRA_ENTRY_ID, itemId);
         startActivity(intent);
     }
+
+
 
     private void showUndoSnackbar(String message) {
         View view = this.findViewById(R.id.coordinator_layout);

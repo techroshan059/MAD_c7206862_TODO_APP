@@ -15,7 +15,7 @@ import java.util.List;
 @Dao
 public interface AppDao {
 
-    @Query("SELECT * FROM entry ORDER BY updatedAt")
+    @Query("SELECT * FROM entry ORDER BY title")
     LiveData<List<Entries>> loadAllEntries();
 
     @Insert
@@ -24,11 +24,16 @@ public interface AppDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateEntry(Entries entry);
 
+    @Query("UPDATE entry set status=:status WHERE id = :id")
+    void updateComplete(int status, int id);
+
     @Delete
     void deleteEntry(Entries entry);
 
     @Query("SELECT * FROM entry WHERE id = :id")
     LiveData<Entries> loadEntryById(int id);
+
+
 }
 
 

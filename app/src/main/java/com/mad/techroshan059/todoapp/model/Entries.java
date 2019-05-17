@@ -16,20 +16,22 @@ public class Entries {
     private String dueDate;
     private String dueTime;
     private int priority;
+    private int status;
     private Date updatedAt;
 
     @Ignore
-    public Entries(String title, String content, String dueDate, String dueTime,int priority, Date updatedAt) {
+    public Entries(String title, String content, String dueDate, String dueTime,int priority,int status, Date updatedAt) {
         this.title = title;
         this.content = content;
         this.updatedAt = updatedAt;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
         this.priority = priority;
+        this.status = status;
 
     }
 
-    public Entries(int id, String title, String content, String dueDate, String dueTime, int priority,  Date updatedAt) {
+    public Entries(int id, String title, String content, String dueDate, String dueTime, int priority, int status, Date updatedAt) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -37,6 +39,7 @@ public class Entries {
         this.dueTime = dueTime;
         this.updatedAt = updatedAt;
         this.priority = priority;
+        this.status = status;
     }
 
 
@@ -86,6 +89,15 @@ public class Entries {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public Date getUpdatedAt() {
