@@ -6,6 +6,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -57,6 +59,8 @@ public class EntryActivity extends AppCompatActivity {
     DatePickerDialog picker;
     ImageView popUpCalendar,popUpClock;
 
+    CheckBox priorityCheckBox;
+
 
     private AppDatabase mDb;
 
@@ -65,6 +69,9 @@ public class EntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry);
         ButterKnife.bind(this);
+
+         priorityCheckBox = findViewById(R.id.checkbox_priority);
+
 
         Date date = Calendar.getInstance().getTime();
         DateFormat currentDate = new SimpleDateFormat("EEE, MMM d, yyyy");
@@ -175,6 +182,10 @@ public class EntryActivity extends AppCompatActivity {
         }
         title.setText(entry.getTitle());
         content.setText(entry.getContent());
+        dueDate.setText(entry.getDueDate());
+        dueTime.setText(entry.getDueTime());
+        priorityCheckBox.setChecked(entry.getPriority()==1?true:false);
+
 
     }
 
@@ -214,7 +225,7 @@ public class EntryActivity extends AppCompatActivity {
         String entryDueDate = dueDate.getText().toString();
         String entryDueTime = dueTime.getText().toString();
         Date date = new Date();
-        final Entries entry = new Entries(entryTitle, entryContent, entryDueDate, entryDueTime, date);
+        final Entries entry = new Entries(entryTitle, entryContent, entryDueDate, entryDueTime, priorityCheckBox.isChecked()?1:0,  date);
         if (!(entryTitle.isEmpty()) && !(entryContent.isEmpty())) {
             AppExecutors.getInstance().diskIO().execute(new Runnable() {
                 @Override
@@ -228,13 +239,17 @@ public class EntryActivity extends AppCompatActivity {
                     finish();
                 }
             });
+
             Toast.makeText(EntryActivity.this, "Your note is saved", Toast.LENGTH_SHORT).show();
         } else {
-            finish();
+
         }
     }
+
+
 
     public  void openCalModal(){
         Toast.makeText(this, "open", Toast.LENGTH_SHORT).show();
     }
+
 }

@@ -137,6 +137,7 @@ android:id="@+id/popUpClock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
+        android:id="@+id/checkbox_priority"
         android:textColor="@color/colorPrimary"
         android:text="Mark as a priority todo task "/>
 

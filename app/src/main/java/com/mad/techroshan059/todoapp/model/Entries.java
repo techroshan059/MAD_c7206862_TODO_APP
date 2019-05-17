@@ -15,26 +15,28 @@ public class Entries {
     private String content;
     private String dueDate;
     private String dueTime;
-
+    private int priority;
     private Date updatedAt;
 
     @Ignore
-    public Entries(String title, String content, String dueDate, String dueTime, Date updatedAt) {
+    public Entries(String title, String content, String dueDate, String dueTime,int priority, Date updatedAt) {
         this.title = title;
         this.content = content;
         this.updatedAt = updatedAt;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
+        this.priority = priority;
 
     }
 
-    public Entries(int id, String title, String content, String dueDate, String dueTime, Date updatedAt) {
+    public Entries(int id, String title, String content, String dueDate, String dueTime, int priority,  Date updatedAt) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
         this.updatedAt = updatedAt;
+        this.priority = priority;
     }
 
 
@@ -76,6 +78,14 @@ public class Entries {
 
     public void setDueTime(String dueTime) {
         this.dueTime = dueTime;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public Date getUpdatedAt() {
